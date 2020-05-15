@@ -29,10 +29,12 @@ public static void main(String[] args) {
 ////	biz.delboook(book);
 ////	show();
 //	bookView view =new bookView();
+
 	//new bookView();
 //abstractBookview bookview =new BookviewConsoleImpl();
-	FileUtil file=new FileUtil();
-	file.runSavaBook(datas.bookdatas);
+	//FileUtil file=new FileUtil();
+	FileUtil.runSavaBook(datas.bookdatas);
 //bookview.domainview();
+
 }
 }
