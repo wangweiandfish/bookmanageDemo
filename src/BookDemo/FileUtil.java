@@ -5,11 +5,18 @@ package BookDemo;
  *
  */
 
+import java.awt.GridLayout;
+//import java.awt.GridLayout;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class FileUtil {
@@ -76,5 +83,105 @@ public class FileUtil {
 		}
 		
 	}
+	/**
+	 * 从文件中读取内容，再重新整合成对象数组输出
+	 * @return
+	 * @throws IOException 
+	 */
+	public static book[] loadBook() throws IOException {
+		file=new File(FilePath);
+		BufferedReader reader=new BufferedReader(new FileReader(file));//带缓存区的reader（按字符读取）
+		String readline=null;//用来接收读取的每一行（每一类书）
+		
+		int count=0;
+		while((readline=reader.readLine())!=null)//字符型readline用来接收从文件中读取的内容当读取内容不为空时
+		{
+			book book =new book();//实例化book类来接收str型数组的内容
+			String[] strline=readline.split(sepAttr);//将读取的一行用分割符进行分离，返回分隔后的字符数组
+			book.setBookId(strline[0].trim());//注解trim():去掉两边的空格
+			book.setBookName(strline[1].trim());
+			book.setCount(Integer.parseInt(strline[2].trim()));//图书价格
+			datas.bookdatas[count++]=book;
+			
+			
+			}
+		reader.close();
+		return datas.bookdatas;
+		}
+	
+//	public static void runLoadBook() //运行加载（利用GUI图形编程）
+//	{
+//		JFrame frame=new JFrame("图书仓库");
+//		frame.setSize(800, 900);//宽和高
+//		int count=0;
+//		try {
+//			book[] showbook=loadBook();
+//			count = bookbiz.getbookvariety(showbook);
+//			// 创建一个网格布局管理器实例grid，表格为3*count
+//			GridLayout grid=new GridLayout(3, count);
+//			// 设置frame的页面布局为grid
+//			frame.setLayout(grid);
+//			/// 定义一个JButton的数组b，数组长度为3*count
+//			JButton[] bu=new JButton[3*count];
+//			int bookcount=0;//用来计算读取到哪本书了
+//			
+//			for(int i=0;i<count;i+=3)
+//			{
+//				
+//				
+//					bu[i]=new JButton(showbook[bookcount].getBookId());
+//				
+//				
+//					bu[i+1]=new JButton(showbook[bookcount].getBookName());
+//				
+//				
+//					bu[i+2]=new JButton(Integer.toString(showbook[bookcount].getCount()));
+//				
+//				frame.add(bu[i]);
+//				frame.add(bu[i+1]);
+//				frame.add(bu[i+2]);
+//				
+//			}
+//			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//			frame.setVisible(true);
+//		} catch (IOException e3) {
+//			// TODO Auto-generated catch block
+//			e3.printStackTrace();
+//		}//设置多少行
+//		
+//			
+//		}
+public static void runLoadBook()
+{
+	try {
+		book[] showbook=loadBook(); 
+		for(int i=0;i<showbook.length;i++)
+		{
+			if(showbook[i]==null)
+			{
+				break;
+			}
+			System.out.println(showbook[i].getBookId()+"\t"+showbook[i].getBookName());
+		}
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 	
 }
+
+
+
+
+
+
+}
+
+	
+	
+		
+		
+	
+
+	
+

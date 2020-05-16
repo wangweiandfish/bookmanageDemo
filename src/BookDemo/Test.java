@@ -1,5 +1,7 @@
 package BookDemo;
 
+import java.io.IOException;
+
 public class Test {
 
 	public static void show()
@@ -33,7 +35,17 @@ public static void main(String[] args) {
 	//new bookView();
 //abstractBookview bookview =new BookviewConsoleImpl();
 	//FileUtil file=new FileUtil();
-	FileUtil.runSavaBook(datas.bookdatas);
+	//FileUtil.runSavaBook(datas.bookdatas);
+	FileUtil.runLoadBook();
+//	int count;
+//	try {
+//		count = new bookBiz().getbookvariety(FileUtil.loadBook());
+//		System.out.println(count);
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+	
 //bookview.domainview();
 
 }
